@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>RSS2 Image Catalog</title>
+
+  <style>
+    body {
+      background: #111;
+      color: #eee;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 30px;
+    }
+
+    #catalog {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1d1d1d;
+      border: 1px solid #444;
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      background: #000;
+      border-radius: 6px;
+    }
+
+    .filename {
+      font-weight: bold;
+      margin-top: 12px;
+    }
+
+    .url {
+      font-size: 12px;
+      color: #aaa;
+      word-break: break-all;
+      margin: 8px 0;
+    }
+
+    button,
+    a.button {
+      display: inline-block;
+      margin-top: 8px;
+      margin-right: 6px;
+      padding: 8px 12px;
+      border-radius: 5px;
+      border: none;
+      text-decoration: none;
+      cursor: pointer;
+      background: #333;
+      color: white;
+    }
+
+    button:hover,
+    a.button:hover {
+      background: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>RSS2 Image Catalog</h1>
+  <div class="subtitle">
+    Image library for Really Simple Signs 2
+  </div>
+
+  <div id="catalog"></div>
+
+  <script>
+    const images = [
+
+      { file: "Arcsteel2.PNG", label: "Arcsteel 2" },
+      { file: "Arcsteel3.PNG", label: "Arcsteel 3" },
+      { file: "Arcsteel4.PNG", label: "Arcsteel 4" },
+      { file: "Arcsteel5.PNG", label: "Arcsteel 5" },
+      { file: "Arcsteelmain.PNG", label: "Arcsteel Main" },
+
+      { file: "Bd2.PNG", label: "Basalt Dynamics 2" },
+      { file: "Bdicon1.PNG", label: "Basalt Dynamics Icon 1" },
+      { file: "Bdmain.PNG", label: "Basalt Dynamics Main" },
+
+      { file: "Blackwater2.PNG", label: "Blackwater 2" },
+      { file: "Blackwater3.PNG", label: "Blackwater 3" },
+      { file: "Blackwater4.PNG", label: "Blackwater 4" },
+      { file: "Blackwatericon1.PNG", label: "Blackwater Icon 1" },
+      { file: "Blackwatermain.PNG", label: "Blackwater Main" },
+
+      { file: "Cobalticon1.PNG", label: "Cobalt Icon 1" },
+      { file: "Cobalticon2.PNG", label: "Cobalt Icon 2" },
+      { file: "Cobaltmain.PNG", label: "Cobalt Main" },
+
+      { file: "Copper2.PNG", label: "Copper 2" },
+      { file: "Coppermain.PNG", label: "Copper Main" },
+
+      { file: "Epicon1.PNG", label: "EP Icon 1" },
+      { file: "Epicon2.PNG", label: "EP Icon 2" },
+      { file: "Epicon3.PNG", label: "EP Icon 3" },
+      { file: "Epmain.PNG", label: "EP Main" },
+
+      { file: "Fireball2.PNG", label: "Fireball 2" },
+      { file: "Fireball3.PNG", label: "Fireball 3" },
+      { file: "Fireball4.PNG", label: "Fireball 4" },
+      { file: "Fireball5.PNG", label: "Fireball 5" },
+      { file: "Fireballfabricationmain.PNG", label: "Fireball Fabrication Main" },
+      { file: "Fireballicon1.PNG", label: "Fireball Icon 1" },
+      { file: "Fireballicon2.PNG", label: "Fireball Icon 2" },
+      { file: "Fireballicon3.PNG", label: "Fireball Icon 3" },
+      { file: "Fireballicon4.PNG", label: "Fireball Icon 4" },
+
+      { file: "Kg2.PNG", label: "KG 2" },
+      { file: "Kg3.PNG", label: "KG 3" },
+      { file: "Kg4.PNG", label: "KG 4" },
+      { file: "Kg5.PNG", label: "KG 5" },
+      { file: "Kg6.PNG", label: "KG 6" },
+      { file: "Kg7.PNG", label: "KG 7" },
+      { file: "Kgicon1.PNG", label: "KG Icon 1" },
+      { file: "Kgicon2.PNG", label: "KG Icon 2" },
+      { file: "Kgicon3.PNG", label: "KG Icon 3" },
+      { file: "Kgmain.PNG", label: "KG Main" },
+
+      { file: "Meridian2.PNG", label: "Meridian 2" },
+      { file: "Meridian3.PNG", label: "Meridian 3" },
+      { file: "Meridian4.PNG", label: "Meridian 4" },
+      { file: "Meridianmain.PNG", label: "Meridian Main" },
+
+      { file: "Parallax2.PNG", label: "Parallax 2" },
+      { file: "Parallax3.PNG", label: "Parallax 3" },
+      { file: "Parallax4.PNG", label: "Parallax 4" },
+      { file: "Parallax5.PNG", label: "Parallax 5" },
+      { file: "Parallax6.PNG", label: "Parallax 6" },
+      { file: "Parallax7.PNG", label: "Parallax 7" },
+      { file: "Parallax8.PNG", label: "Parallax 8" },
+      { file: "Parallax9.PNG", label: "Parallax 9" },
+      { file: "Parallax10.PNG", label: "Parallax 10" },
+      { file: "Parallax11.PNG", label: "Parallax 11" },
+      { file: "Parallax12.PNG", label: "Parallax 12" },
+      { file: "Parallax13.PNG", label: "Parallax 13" },
+      { file: "Parallax14.PNG", label: "Parallax 14" },
+      { file: "Parallax15.PNG", label: "Parallax 15" },
+      { file: "Parallaxicon1.PNG", label: "Parallax Icon 1" },
+      { file: "Parallaxicon3.PNG", label: "Parallax Icon 3" },
+      { file: "Parallaxicon4.PNG", label: "Parallax Icon 4" },
+      { file: "Parallaxmain.PNG", label: "Parallax Main" },
+      { file: "Parallaxmainport.PNG", label: "Parallax Main Portrait" },
+
+      { file: "Psychopaths2.PNG", label: "Psychopaths 2" },
+      { file: "Psychopaths3.PNG", label: "Psychopaths 3" },
+      { file: "Psychopaths4.PNG", label: "Psychopaths 4" },
+      { file: "Psychopathsmain.PNG", label: "Psychopaths Main" },
+
+      { file: "Solex2.PNG", label: "Solex 2" },
+      { file: "Solex3.PNG", label: "Solex 3" },
+      { file: "Solexmain.PNG", label: "Solex Main" },
+
+      { file: "Synapse2.PNG", label: "Synapse 2" },
+      { file: "Synapse3.PNG", label: "Synapse 3" },
+      { file: "Synapsemain.PNG", label: "Synapse Main" }
+
+    ];
+
+    const rawBase =
+      "https://raw.githubusercontent.com/thesnowballeffect/thesnowballeffect.github.io/main/";
+
+    const catalog = document.getElementById("catalog");
+
+    images.forEach(image => {
+      const url = encodeURI(rawBase + image.file);
+
+      const card = document.createElement("div");
+      card.className = "card";
+
+      card.innerHTML = `
+        <img src="${url}" alt="${image.label}">
+        <div class="filename">${image.label}</div>
+        <div>${image.file}</div>
+        <div class="url">${url}</div>
+
+        <button onclick="copyUrl('${url}', this)">
+          Copy RSS2 URL
+        </button>
+
+        <a class="button"
+           href="${url}"
+           target="_blank">
+          Open Image
+        </a>
+      `;
+
+      catalog.appendChild(card);
+    });
+
+    function copyUrl(url, button) {
+      navigator.clipboard.writeText(url)
+        .then(() => {
+          const oldText = button.textContent;
+          button.textContent = "Copied!";
+          setTimeout(() => {
+            button.textContent = oldText;
+          }, 1500);
+        })
+        .catch(() => {
+          window.prompt("Copy this URL:", url);
+        });
+    }
+  </script>
+
+</body>
+</html>
